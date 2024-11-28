@@ -2,40 +2,42 @@ package br.com.etechoracio.study.service;
 
 import br.com.etechoracio.study.entity.Disciplina;
 import br.com.etechoracio.study.entity.Monitor;
-import br.com.etechoracio.study.repository.DisciplinaRepository;
+import br.com.etechoracio.study.repository.MonitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class DisciplinaService {
+public class MonitorService {
     @Autowired
-    private DisciplinaRepository repository;
+    private MonitorRepository repository;
 
-    public List<Disciplina> listar(){
+    public List<Monitor> listar(){
         return repository.findAll();
     }
-    public Disciplina buscarPorId(Long id){
+
+    public Monitor buscarPorId(Long id){
         var existe = repository.findById(id);
         if(existe.isPresent())
             return existe.get();
         return null;
     }
-    public Disciplina buscarPorNome(String nome){
+
+    public Monitor buscarPorNome(String nome){
         return repository.findByNome(nome);
     }
 
-    public Disciplina cadastrar(Disciplina disciplina){
-        return repository.save(disciplina);
+    public Monitor cadastrar(Monitor monitor){
+        return repository.save(monitor);
     }
 
-    public Disciplina alterar(Disciplina disciplina) {
+    public Monitor alterar(Monitor monitor) {
 
-        var existe = buscarPorId(disciplina.getId());
+        var existe = buscarPorId(monitor.getId());
         if (existe != null){
             System.out.println("Monitor alterado.");
-            return repository.save(disciplina);
+            return repository.save(monitor);
         }
         else {
             return null;

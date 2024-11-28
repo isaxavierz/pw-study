@@ -4,6 +4,6 @@ import br.com.etechoracio.study.entity.Disciplina;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DisciplinaRepository extends JpaRepository<Disciplina /**/, Long/*tipo da chave primária*/> {
-
+    Disciplina findByNome(String nome);
 
 }
